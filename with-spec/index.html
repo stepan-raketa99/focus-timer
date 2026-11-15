@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5ef">
+  <title>Focus Timer — время для важного</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <main class="shell">
+    <header class="page-header secondary">
+      <div><p class="eyebrow">ПРОСТРАНСТВО ДЛЯ УЧЁБЫ</p><h1>Focus Timer<span class="brand-dot">.</span></h1></div>
+      <span class="local-note">Только вы и ваше внимание</span>
+    </header>
+    <div class="workspace">
+      <div class="session-column">
+        <section class="card timer-card" aria-label="Таймер сессии">
+          <div class="section-heading"><span class="eyebrow">ТЕКУЩАЯ СЕССИЯ</span><button id="focus-toggle" class="quiet" type="button" aria-pressed="false">Концентрация</button></div>
+          <fieldset id="modes" class="modes secondary"><legend>Цель сессии</legend>
+            <label><input type="radio" name="target" value="3600000" checked><span>60 мин</span></label>
+            <label><input type="radio" name="target" value="1800000"><span>30 мин</span></label>
+            <label><input type="radio" name="target" value="300000"><span>5 мин</span></label>
+          </fieldset>
+          <p id="session-status" class="muted">Время сосредоточиться</p>
+          <div id="timer" class="timer" role="timer" aria-label="Активное время">00:00:00</div>
+          <div class="progress-label"><span>Цель <span id="target-label">01:00:00</span></span><span id="progress-label">0%</span></div>
+          <progress id="progress" max="100" value="0" aria-label="Прогресс сессии"></progress>
+          <div class="timer-actions"><button id="primary-action" class="primary" type="button">Старт</button><button id="finish" type="button" disabled>Завершить</button></div>
+          <p class="timer-note secondary">В своём темпе. Секундомер продолжит работу после достижения цели.</p>
+          <div id="fullscreen-offer" class="fullscreen-offer" hidden><button id="fullscreen" type="button">На весь экран</button><button id="dismiss-fullscreen" class="quiet" type="button">Остаться в окне</button></div>
+          <p id="fullscreen-message" class="muted" role="status" hidden></p>
+        </section>
+        <section class="card tasks-card" aria-labelledby="tasks-title">
+          <div class="section-heading"><h2 id="tasks-title">Задачи сессии</h2><span id="task-count" class="badge">0 / 0</span></div>
+          <form id="task-form"><label for="task-title" class="input-label">На чём сосредоточимся?</label><div class="task-input-row"><input id="task-title" name="title" placeholder="Например, прочитать главу" autocomplete="off" aria-describedby="task-error" required><button type="submit" aria-label="Добавить задачу">Добавить</button></div><p id="task-error" class="form-error" role="status" hidden></p></form>
+          <ul id="task-list" class="task-list"></ul>
+          <p id="tasks-empty" class="empty-note">Добавьте небольшой шаг к большой цели.</p>
+        </section>
+      </div>
+      <aside id="statistics" class="card statistics secondary" aria-labelledby="today-title">
+        <div class="section-heading"><h2 id="today-title">Сегодня</h2><span id="today-date" class="muted"></span></div>
+        <div class="totals"><div><strong id="session-count">0</strong><span>успешных сессий</span></div><div><strong id="total-time">00:00:00</strong><span>время концентрации</span></div></div>
+        <h3>История сессий</h3><p id="history-empty" class="empty-note">Здесь появятся ваши завершённые сессии. Начните с первого шага.</p><ol id="history-list" class="history-list"></ol>
+        <p class="storage-note">Результаты сохраняются только в этом браузере.</p>
+      </aside>
+    </div>
+    <p id="storage-message" class="storage-message secondary" role="status" hidden></p>
+    <footer class="secondary">Одно занятие. Одна задача. Чуть ближе к цели.</footer>
+  </main>
+</body>
+</html>

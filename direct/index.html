@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Focus Timer — время для учёбы</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="domain.mjs"></script>
+  <script defer src="app.mjs"></script>
+</head>
+<body>
+  <main>
+    <header class="page-header secondary">
+      <div><p class="eyebrow">ВРЕМЯ ДЛЯ ГЛАВНОГО</p><h1>Focus Timer</h1></div>
+      <p>Одна задача. Полное внимание.</p>
+    </header>
+    <div class="layout">
+      <section class="card timer-card" aria-label="Текущая сессия">
+        <div class="section-heading"><h2>Концентрация</h2><button id="focus" class="quiet" aria-pressed="false">Глубокий фокус</button></div>
+        <fieldset id="modes" class="secondary">
+          <legend>Цель сессии</legend>
+          <label><input type="radio" name="mode" value="3600" checked><span>60 мин</span></label>
+          <label><input type="radio" name="mode" value="1800"><span>30 мин</span></label>
+          <label><input type="radio" name="mode" value="300"><span>5 мин</span></label>
+        </fieldset>
+        <p id="status">Готовы начать?</p>
+        <div id="timer" role="timer" aria-label="Активное время">00:00:00</div>
+        <div class="progress-label"><span id="goal">Цель · 01:00:00</span><span id="percentage">0%</span></div>
+        <progress id="progress" max="100" value="0" aria-label="Прогресс сессии"></progress>
+        <div class="controls"><button id="primary" class="primary">Старт</button><button id="finish" disabled>Завершить</button></div>
+        <p id="message" class="hint" role="status">Работайте в своём темпе. Завершите сессию вручную.</p>
+        <section class="tasks" aria-labelledby="tasks-title">
+          <h2 id="tasks-title">Задачи сессии</h2>
+          <form id="task-form"><label class="sr-only" for="task-title">Название задачи</label><input id="task-title" placeholder="На чём сосредоточимся?" autocomplete="off" required><button type="submit" aria-label="Добавить задачу">Добавить</button></form>
+          <p id="tasks-empty" class="hint">Добавьте первую задачу для этой сессии.</p>
+          <ul id="tasks"></ul>
+        </section>
+      </section>
+      <section class="card secondary statistics" aria-labelledby="today-title">
+        <p class="eyebrow">ВАШ ПРОГРЕСС</p><h2 id="today-title">Сегодня</h2>
+        <div class="summary"><div><strong id="count">0</strong><span>успешных сессий</span></div><div><strong id="total">00:00:00</strong><span>время концентрации</span></div></div>
+        <p id="history-empty" class="hint">Здесь появятся завершённые сессии, в которых вы достигли цели.</p>
+        <p id="storage-message" class="hint" role="status"></p>
+        <ol id="history"></ol>
+      </section>
+    </div>
+    <footer class="secondary">Без спешки и отвлечений. Только вы и ваше время.</footer>
+  </main>
+</body>
+</html>
